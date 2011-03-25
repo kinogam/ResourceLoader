@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="Script/ResourceLoader.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        window.addEventListener("load", function () {
+            var info = document.querySelector("div");
+
+            var rl = new ResourceLoader();
+            rl.add({ type: "image", key: "pic1", src: "1.jpg" });
+            rl.add({ type: "audio", key: "audio1", src: "air.ogg" });
+            rl.add({ type: "video", key: "video1", src: "01.mp4" });
+            rl.itemLoad = function () {
+                info.innerHTML += this.src + " loaded!<br/>";
+            }
+
+            rl.onload = function () {
+                info.innerHTML += "All resource loaded,now play music";
+                //rl.rs["audio1"].loop = true;
+                rl.rs["audio1"].play();
+            }
+            rl.load();
+        }, true);
+    </script>
+</head>
+<body>
+<div></div>
+</body>
+</html>
